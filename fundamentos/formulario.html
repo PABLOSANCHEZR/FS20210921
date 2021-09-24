@@ -1,34 +1,40 @@
 <!DOCTYPE html>
 <html>
+
+<head>
+     <title>Formulario</title>
+     <meta charset="utf-8"/>
+     <link rel="stylesheet" href="estilos.css">
+</head>
 <body>
     
-    <title>Formulario</title>
-    <h1 style="color: blue;"><strong><u>Formulario de Registro</u></strong></h1>
-    <a style="position: absolute;top: 17px;left: 1100px;" href=""><img alt="Logo" src="logo.jpg" width="120" height="80"></a>
-    <h3>Bienvenido!! Rellene el siguiente formulario para poder iniciar sesion</h3>
+   
+    <h1>Formulario de Registro</h1>
+   <!--<a style="position: absolute;top: 17px;left: 1100px;" href=""><img alt="Logo" src="logo.jpg" width="120" height="80"></a> -->
+    <!--<h2>Bienvenido!! Rellene el siguiente formulario para poder iniciar sesion</h2>>-->
     <section>
         <form name="Formulario" method="POST">
 
-            Usuario: <br>
-            <input type="text" placeholder="Ingrese su usuario" required><br><br>
+            <p>Usuario:</p> 
+            <input type="text" placeholder="Ingrese su usuario" required><br>
 
-            Contraseña: <br>
-            <input type="password" placeholder="Ingrese su contraseña" maxlength="15" required><br><br>
+            <p>Contraseña:</p>
+            <input type="password" placeholder="Ingrese su contraseña" maxlength="15" required><br>
 
-            Nombre: <br>
-            <input type="text" placeholder="Ingrese su nombre" required> <br><br>
+            <p>Nombre:</p>
+            <input type="text" placeholder="Ingrese su nombre" required> <br>
 
-            Apellidos: <br>
-            <input type="text" placeholder="Ingrese sus apellidos" required><br><br>
+           <p>Apellidos:</p>
+            <input type="text" placeholder="Ingrese sus apellidos" required><br>
 
-            Email: <br>
-            <input type="email" placeholder="Ingrese su correo electronico" required><br><br>
+            <p>Email:</p>
+            <input type="email" placeholder="Ingrese su correo electronico" required><br>
 
-            Edad: <br>
-            <input type="number" placeholder="Ingrese su edad" required><br><br>
+           <p>Edad:</p> 
+            <input type="number" placeholder="Ingrese su edad" required><br>
 
-            Descripcion: <br>
-            <textarea placeholder="Ingrese su descripcion" required></textarea> <br><br>
+           <p>Descripcion:</p> 
+            <textarea placeholder="Ingrese su descripcion" required></textarea> <br>
 
             <input type="submit" value="Registrate">
             <input type="reset" value="Borrar">
@@ -36,6 +42,7 @@
             <hr color="blue">
             <hr color="#00E0FF">
 
+            <button class="botonInicio"><a href="sakila.html">Volver</a></button>
 
 
 
