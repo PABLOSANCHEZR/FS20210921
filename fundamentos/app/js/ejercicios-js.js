@@ -9,6 +9,8 @@ function aleatorio(minimo,maximo){
   // ejercicio2
 
 // eslint-disable-next-line no-unused-vars
+
+new class adivinarNumero()
 function adivinarNumero (){
 
     var numero = parseInt(prompt("Ingresa un número (del 1 al 100):"));

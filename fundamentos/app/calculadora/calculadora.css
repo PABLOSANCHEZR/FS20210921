@@ -1,0 +1,60 @@
+#calculadora {
+  background: rgb(255, 255, 255);
+  border: 7px;
+  border: 2px solid rgb(0, 0, 0);
+}
+#calculadora td {
+  padding: 4px;
+  
+}
+.cajita_valor {
+  background-color: #5ffff7;
+  color: black;
+  border: 2px solid blue;
+  width: 182px;
+  height: 26px;
+  font-family: Arial, Helvetica;
+  font-size: 25px;
+  line-height: 26px;
+  text-align: right;
+}
+.boton_funcion {
+  width: 40px;
+  border: 1px solid #000;
+  font-family: Arial;
+  font-size: 15px;
+  cursor: hand;
+  background-color: #fff;
+  font-weight: bold;
+  color: rgb(255, 0, 0);
+}
+
+.boton{
+    width: 40px;
+  border: 1px solid #000;
+  font-family: Arial;
+  font-size: 15px;
+  cursor: hand;
+  background-color: #fff;
+}
+
+.boton_largo {
+  width: 62px;
+  border: 1px solid #000;
+  font-family: Arial;
+  font-size: 15px;
+  cursor: hand;
+  background-color: #fff;
+}
+
+.boton_igual{
+    width: 40px;
+  border: 1px solid #000;
+  font-family: Arial;
+  font-size: 15px;
+  cursor: hand;
+  background-color: #fff;
+  align-content: right;
+}
+
+  
