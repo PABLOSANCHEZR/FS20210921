@@ -2,6 +2,8 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { NotificationComponent } from './notification/notification.component';
+import { CommonServicesModule } from '../common-services';
+import { NotificationModalComponent } from './notification-modal/notification-modal.component';
 
 
 
@@ -9,15 +11,15 @@ import { NotificationComponent } from './notification/notification.component';
   declarations: [
     HomeComponent,
     NotificationComponent,
-
+    NotificationModalComponent,
   ],
-
   exports: [
     HomeComponent,
     NotificationComponent,
+    NotificationModalComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule, CommonServicesModule,
   ]
 })
 export class MainModule {
@@ -28,4 +30,4 @@ export class MainModule {
       throw new Error(msg);
     }
   }
- }
+}
