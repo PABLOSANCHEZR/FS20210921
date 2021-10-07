@@ -12,7 +12,7 @@ export enum NotificationType {error, warn, info, log};
 @Injectable({
   providedIn: 'root'
 })
-export class NotificacionService {
+export class NotificationService {
 
   private listado: Array<Notification> = [];
 

@@ -1,0 +1,50 @@
+<form #miForm="ngForm">
+
+  <div>
+    <label for="id">CODIGO</label>
+      <input type="number" id="id" name="id" [(ngModel)]="vm.Elemento.id" #id="ngModel">
+
+  </div>
+  <div>
+    <label for="nombre">NOMBRE</label>
+      <input type="text" id="nombre" name="nombre" [(ngModel)]="vm.Elemento.nombre" #nombre="ngModel">
+
+  </div>
+
+  <div>
+    <label for="apellidos">APELLIDOS</label>
+      <input type="texte" id="apellidos" name="apellidos" [(ngModel)]="vm.Elemento.apellidos" #apellidos="ngModel">
+
+  </div>
+
+  <div>
+    <label for="correo">CORREO</label>
+      <input type="email" id="correo" name="correo" [(ngModel)]="vm.Elemento.correo" #correo="ngModel">
+
+  </div>
+  <div>
+    <label for="edad">EDAD </label>
+      <input type="number" id="edad" name="edad" [(ngModel)]="vm.Elemento.edad" #edad="ngModel">
+
+  </div>
+  <div>
+    <label for="dni">DNI </label>
+      <input type="text" id="dni" name="dni" [(ngModel)]="vm.Elemento.dni" #dni="ngModel">
+
+  </div>
+
+  <div>
+    <input type="button" value="enviar" (click)="vm.send()">
+    <input type="button" value="volver" (click)="vm.cancel()">
+
+
+  </div>
+
+  <div>
+    <input type="button" value="add" (click)="vm.add()">
+    <input type="button" value="edit" (click)="vm.edit()">
+
+
+  </div>
+
+</form>

@@ -11,17 +11,20 @@ import { MainModule } from './main';
 import { CommonServicesModule } from './common-services';
 import { SecurityModule } from './security';
 import { environment } from 'src/environments/environment';
+import { FormularioComponent } from './formulario/formulario.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DemosComponent,
     DinamicoComponent,
+    FormularioComponent,
   ],
   imports: [
     BrowserModule, FormsModule,
     AppRoutingModule, MyCoreModule, MainModule,CommonServicesModule,SecurityModule,
     CommonServicesModule,
+    MainModule,
   ],
   providers: [
     LoggerService,
