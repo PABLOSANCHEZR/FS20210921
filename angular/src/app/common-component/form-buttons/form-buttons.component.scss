@@ -1,0 +1,22 @@
+.btnEnviar {
+  color: black;
+  background-color: green;
+  border-width: 3px;
+  border-color: black;
+}
+
+.btnCancelar {
+  color:black;
+  background-color: red;
+  border-width: 3px;
+  border-color: black;
+}
+input,textarea{
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 7px;
+  box-sizing: border-box;
+  font-size: 17px;
+  border: no;
+
+}

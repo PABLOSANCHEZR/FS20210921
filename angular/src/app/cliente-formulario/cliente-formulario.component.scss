@@ -1,0 +1,50 @@
+form{
+  width: 450px;
+  margin: auto;
+  background: rgba(0,0,0,0.4);
+  box-sizing: border-box;
+  margin-top: 10px;
+  border-radius: 7px;
+  padding: 10px 20px;
+}
+
+input,textarea{
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 7px;
+  box-sizing: border-box;
+  font-size: 17px;
+  border: no;
+
+}
+
+textarea{
+  min-height: 100px;
+  max-height: 200px;
+  max-width: 100%;
+
+}
+.error {
+  color: red;
+}
+
+
+form .ng-pristine {
+  border-color: navy;
+  box-shadow: 5px 5px 5px navy;
+}
+form .ng-dirty {
+  border-color: green;
+  box-shadow: 5px 5px 5px green;
+}
+form .ng-invalid {
+  border-color: red !important;
+  box-shadow: 5px 5px 5px red !important;
+  margin-right: 10px;
+  transform: scale(1.02);
+  transition: all linear 1s;
+}
+form .ng-invalid-parse {
+  transition: all linear 1s;
+}
+
