@@ -15,7 +15,7 @@ import { FormularioComponent } from './formulario/formulario.component';
 import { CommonComponentModule } from './common-component/common-component.module';
 import { ClienteFormularioComponent } from './cliente-formulario/cliente-formulario.component';
 import { FormButtonsComponent } from './common-component/form-buttons/form-buttons.component';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +31,7 @@ import { FormButtonsComponent } from './common-component/form-buttons/form-butto
     CommonServicesModule,
     MainModule,
     CommonComponentModule,
+    HttpClientModule,
   ],
   providers: [
     LoggerService,
