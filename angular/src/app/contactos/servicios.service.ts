@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LoggerService } from 'src/lib/my-core';
 import { NotificationService } from '../common-services';
+import { Router } from '@angular/router';
 export type ModoCRUD = 'list' | 'add' | 'edit' | 'view' | 'delete';
 export abstract class RESTDAOService<T, K> {
   protected baseUrl = environment.apiURL;
@@ -49,12 +50,10 @@ export class ContactosViewModelService {
   protected listado: Array<any> = [];
   protected elemento: any = {};
   protected idOriginal: any = null;
+  protected listURL = '/contactos';
 
-  constructor(
-    protected notify: NotificationService,
-    protected out: LoggerService,
-    protected dao: ContactosDAOService
-  ) {}
+  constructor(protected notify: NotificationService, protected out: LoggerService,
+    protected dao: ContactosDAOService, protected router: Router) { }
 
   public get Modo(): ModoCRUD {
     return this.modo;
@@ -118,7 +117,8 @@ export class ContactosViewModelService {
   public cancel(): void {
     this.elemento = {};
     this.idOriginal = null;
-    this.list();
+    //this.list();
+    this.router.navigateByUrl(this.listURL);
   }
 
   public send(): void {
