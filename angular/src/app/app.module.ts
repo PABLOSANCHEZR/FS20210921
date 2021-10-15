@@ -12,11 +12,10 @@ import { CommonServicesModule } from './common-services';
 import { SecurityModule } from './security';
 import { environment } from 'src/environments/environment';
 import { FormularioComponent } from './formulario/formulario.component';
-import { CommonComponentModule } from './common-component/common-component.module';
 import { ClienteFormularioComponent } from './cliente-formulario/cliente-formulario.component';
-import { FormButtonsComponent } from './common-component/form-buttons/form-buttons.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ContactosModule } from './contactos';
+import { CommonComponentModule } from './common-component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +23,6 @@ import { ContactosModule } from './contactos';
     DinamicoComponent,
     FormularioComponent,
     ClienteFormularioComponent,
-    FormButtonsComponent
   ],
   imports: [
     BrowserModule, FormsModule,

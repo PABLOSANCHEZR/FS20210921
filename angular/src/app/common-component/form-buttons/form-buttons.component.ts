@@ -6,6 +6,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./form-buttons.component.scss']
 })
 export class FormButtonsComponent {
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('send-disabled') sendDisabled: boolean | null = false;
   @Output() send: EventEmitter<any> = new EventEmitter<any>();
   @Output() cancel: EventEmitter<any> = new EventEmitter<any>();
