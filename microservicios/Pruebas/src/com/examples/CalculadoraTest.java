@@ -39,10 +39,15 @@ class CalculadoraTest {
 	}
 
 	@ParameterizedTest(name = "Suma {index} => {0} + {1} = {2}")
-	@CsvSource({ "2,2,4", "0,0,0", "1,-1,0" })
+	@CsvSource({ "2,2,4", "0,0,0", "1,-1,0"/*, "'0.1', '0.2', '0.3'"*/ })
 	void testSuma(double a, double b, double rslt) {
 		assumeTrue(b >= 0);
 		assertEquals(rslt, calc.suma(a, b));
+	}
+	@ParameterizedTest(name = "Multiplica {index} => {0} * {1} = {2}")
+	@CsvSource({ "2,2,4" })
+	void testMultiplica(double a, double b, double rslt) {
+		assertEquals(rslt, calc.multiplica(a, b));
 	}
 
 	@Test
