@@ -1,11 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ERROR_LEVEL, LoggerService } from 'src/lib/my-core';
+import { NotificationService, NotificationType } from '../common-services';
 
+import { Injectable } from '@angular/core';
+import { Unsubscribable } from 'rxjs';
+
+@Injectable({providedIn: 'root'})
+export class EstadoDemoService {
+  constructor() { }
+  private nombre: string = 'mundo';
+  public get Nombre(): string { return this.nombre; }
+  public set Nombre(value: string) {
+    if (this.nombre === value) return;
+    this.nombre = value;
+  }
+
+}
 @Component({
   selector: 'app-demos',
   templateUrl: './demos.component.html',
-  styleUrls: ['./demos.component.scss']
+  styleUrls: ['./demos.component.scss'],
+  providers: [ LoggerService, { provide: ERROR_LEVEL, useValue: 1 },
+  ],
 })
-export class DemosComponent implements OnInit {
+export class DemosComponent implements OnInit, OnDestroy {
   private nombre: string = 'mundo';
   listado = [
     { id: 1, nombre: 'Madrid' },
@@ -18,22 +36,34 @@ export class DemosComponent implements OnInit {
   resultado: string | null = null;
   visible = true;
   estetica = { importante: true, error: false, urgente: true };
-  fontSize = 14;
+  fontSize = 18;
 
-  constructor() { }
+  private suscriptor: Unsubscribable | undefined;
 
-  public get Nombre(): string { return this.nombre; }
-  public set Nombre(value: string) {
-    if (this.nombre === value) return;
-    this.nombre = value;
+  constructor(private log: LoggerService, public vm: NotificationService, private estado: EstadoDemoService) {
+    // log.error('Es un error');
+    // log.warn('Es un warn');
+    // log.info('Es un info');
+    // log.log('Es un log');
   }
 
+  public get Nombre(): string { return this.estado.Nombre; }
+  public set Nombre(value: string) {
+    if (this.estado.Nombre === value) return;
+    this.estado.Nombre = value;
+  }
+  // public get Nombre(): string { return this.nombre; }
+  // public set Nombre(value: string) {
+  //   if (this.nombre === value) return;
+  //   this.nombre = value;
+  // }
+
   public saluda(): void {
-    this.resultado = `Hola ${this.nombre}`;
+    this.resultado = `Hola ${this.Nombre}`;
   }
 
   despide(): void {
-    this.resultado = `Adios ${this.nombre}`;
+    this.resultado = `Adios ${this.Nombre}`;
   }
 
   di(algo: string): void {
@@ -54,7 +84,33 @@ export class DemosComponent implements OnInit {
     this.idProvincia = id;
   }
 
+  idiomas = [
+    { codigo: 'en-US', region: 'USA' },
+    { codigo: 'es', region: 'España' },
+    { codigo: 'pt', region: 'Portugal' },
+  ];
+  idioma = this.idiomas[0].codigo;
+  calculos: any[] = [];
+  valCalculadora = 666;
+
+  ponResultado(origen: string, valor: any) {
+    this.calculos.push({
+      pos: this.calculos.length + 1,
+      origen,
+      valor
+    });
+  }
+
   ngOnInit(): void {
+    this.suscriptor = this.vm.Notificacion.subscribe(n => {
+      if (n.Type !== NotificationType.error) { return; }
+      window.alert(`Suscripcion: ${n.Message}`);
+      this.vm.remove(this.vm.Listado.length - 1);
+      });
+  }
+  ngOnDestroy(): void {
+    if(this.suscriptor)
+    this.suscriptor.unsubscribe();
   }
 
 }

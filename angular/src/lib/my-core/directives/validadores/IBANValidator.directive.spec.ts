@@ -1,6 +1,6 @@
 import { isIBAN, IBANValidator } from './IBANValidator.directive';
 
-fdescribe('IBANValidator', () => {
+describe('IBANValidator', () => {
   it('should create an instance', () => {
     const directive = new IBANValidator();
     expect(directive).toBeTruthy();

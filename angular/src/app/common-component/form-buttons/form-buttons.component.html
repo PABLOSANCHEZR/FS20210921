@@ -1,6 +1,5 @@
-<div>
-  <input type="button" value="ENVIAR" class="btnEnviar" (click)="send.emit()">
-  <input type="button" value="CANCELAR" class="btnCancelar" (click)="cancel.emit()">
-  <input type="button" value="BORRAR" class="btnBorrar" (click)="delete.emit()">
-
+<div class="btn-group" role="group">
+  <button class="btn btn-primary" *ngIf="hasSend" (click)="send.emit(null)" [disabled]="sendDisabled"><i class="fas fa-check-circle"></i> enviar</button>
+  <button class="btn btn-danger" *ngIf="hasDelete" (click)="delete.emit(null)"><i class="far fa-trash-alt"> borrar</i></button>
+  <button class="btn btn-success" *ngIf="hasCancel" (click)="cancel.emit(null)"><i class="fas fa-undo-alt"></i> volver</button>
 </div>

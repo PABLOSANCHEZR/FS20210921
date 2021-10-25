@@ -1,25 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { Injectable } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { NotificationService, NotificationType } from '../common-services';
-
-
-export interface Cliente {
-  id_cliente: number | null;
-  nombre: string;
-  apellidos: string;
-  correo: string | null;
-  telefono: number | string ;
-  edad: number | null;
-  fecha: Date | string;
-  dni: string | null;
-}
 
 @Injectable({providedIn: 'root'})
 export class ClienteViewModel {
-  Listado: Array<Cliente> = [
-    { id_cliente: 1, nombre: 'Pepito', apellidos: 'Grillo', correo: 'pepito@grillo', telefono: 67930393 ,edad: 99, fecha: '14/06/21', dni: '12345678Z' }
+  Listado: Array<any> = [
+    { customer_id: 1, first_name: 'Pepito', last_name: 'Grillo', email: 'pepito@grillo', create_date: '2021-10-22' , last_update: (new Date('2021-10-22')).toISOString() }
   ]
-  Elemento: Cliente = { id_cliente: null, nombre: '', apellidos: '', correo: null, telefono: '', edad: null, fecha: '', dni: null };
+  Elemento: any = { };
   IsAdd = true;
 
   constructor(private notify: NotificationService) {
@@ -31,7 +18,7 @@ export class ClienteViewModel {
   }
 
   public add() {
-    this.Elemento = { id_cliente: null, nombre: '', apellidos: '', correo: null, telefono: '', edad: null, fecha: '', dni: null  }
+    this.Elemento = { }
     this.IsAdd = true;
   }
 
@@ -48,7 +35,6 @@ export class ClienteViewModel {
   public delete() {
     if(!window.confirm('¿Seguro?')) return;
     this.notify.add('Borrado');
-
   }
 
   public cancel() {
@@ -61,7 +47,7 @@ export class ClienteViewModel {
 }
 
 @Component({
-  selector: 'app-formulario',
+  selector: 'app-cliente-formulario',
   templateUrl: './cliente-formulario.component.html',
   styleUrls: ['./cliente-formulario.component.scss']
 })

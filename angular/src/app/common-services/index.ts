@@ -1,4 +1,3 @@
-export { CommonServicesModule } from './common-services.module';
+export * from './common-services.module';
 export * from './notification.service';
 export * from './navigation.service';
-
