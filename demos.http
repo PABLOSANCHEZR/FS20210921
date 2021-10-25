@@ -1,0 +1,90 @@
+GET http://localhost:8001/params/17?nom=hola
+Accept-Language: cristino
+Accept: text/plain
+
+###
+
+GET http://localhost:8001/params/2?nom=adios
+Accept-Language: es-es
+Accept: text/xml
+
+###
+
+GET  http://localhost:8001/salida
+Accept-Language: es-es
+Accept: text/xml, application/json
+
+###
+
+POST http://localhost:8001/salida
+Accept-Language: es-es
+Accept: text/plain, application/json
+Content-Type: application/json
+
+{
+  "id": 7,
+  "nombre": "Nuevo",
+  "apellidos": "Actooooooooooor"
+}
+
+###
+
+POST http://localhost:8001/salida
+Accept-Language: es-es
+Accept: text/xml, application/json
+Content-Type: application/xml
+
+<ActorDTO>
+  <id>0</id>
+  <nombre>Pepito</nombre>
+  <apellidos>Grillo</apellidos>
+</ActorDTO>
+
+###
+
+POST http://localhost:8001/salida
+Accept-Language: es-es
+Accept: text/xml, application/json
+Content-Type: application/x-www-form-urlencoded
+
+id=0&nombre=Pepito&apellidos=Grillo
+
+###
+
+get  http://localhost:8001/actores
+
+###
+
+get  http://localhost:8001/actores/1/peliculas
+
+
+###
+
+get  http://localhost:8001/actores?page=0&size=10&sort=firstName
+
+###
+
+post http://localhost:8001/actores/3
+Content-Type: application/json
+
+{
+  "id": 0,
+  "nombre": "",
+  "apellidos": "coton"
+}
+
+###
+
+put http://localhost:8001/actores/206
+Content-Type: application/json
+
+{
+  "id": 206,
+  "nombre": "CARMELO",
+  "apellidos": "COTON"
+}
+
+###
+
+delete  http://localhost:8001/actores/206
+

@@ -20,7 +20,7 @@ import com.example.infraestructure.repositories.ActorRepository;
 public class ActorServiceImpl implements ActorService {
 	@Autowired
 	private ActorRepository dao;
-
+	
 	@Override
 	public List<Actor> getAll() {
 		return dao.findAll();
@@ -61,7 +61,7 @@ public class ActorServiceImpl implements ActorService {
 		if(item == null)
 			throw new InvalidDataException("Faltan los datos");
 		if(item.isInvalid())
-			throw new InvalidDataException(item.getErroString());
+			throw new InvalidDataException(item.getErrorsString());
 		if(getOne(item.getActorId()).isPresent())
 			throw new DuplicateKeyException();
 		return dao.save(item);
@@ -72,7 +72,7 @@ public class ActorServiceImpl implements ActorService {
 		if(item == null)
 			throw new InvalidDataException("Faltan los datos");
 		if(item.isInvalid())
-			throw new InvalidDataException(item.getErroString());
+			throw new InvalidDataException(item.getErrorsString());
 		if(getOne(item.getActorId()).isEmpty())
 			throw new NotFoundException();
 		return dao.save(item);
