@@ -31,10 +31,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.domains.contracts.services.ActorService;
-import com.example.domains.contracts.services.CategoryService;
-import com.example.domains.entities.Category;
+import com.example.domains.contracts.services.FilmService;
 import com.example.domains.entities.FilmActor;
 import com.example.domains.entities.dtos.ActorDTO;
+import com.example.domains.entities.dtos.FilmDTO;
 import com.example.domains.entities.dtos.FilmShort;
 import com.example.exceptions.BadRequestException;
 import com.example.exceptions.DuplicateKeyException;
@@ -44,60 +44,66 @@ import com.example.exceptions.NotFoundException;
 import org.springframework.http.HttpStatus;
 
 @RestController
-@RequestMapping(path = "/categorias")
-public class CategoryResource {
+@RequestMapping(path = "/peliculas")
+public class FilmResource {
 	@Autowired
-	CategoryService srv;
+	FilmService srv;
 	
 	@GetMapping
-	public List<Category> getAll() {	
-		return srv.getAll();
+	public List<FilmDTO> getAll(@RequestParam(required = false) String sort) {
+		if(sort== null)
+			return srv.getByProjection(FilmDTO.class);
+		else
+			return (List<FilmDTO>) srv.getByProjection(Sort.by(sort), FilmDTO.class);
 	}
 	
-
+	@GetMapping(params = "page")
+	public Page<FilmDTO> getAllPageable(Pageable item) {
+		return srv.getByProjection(item, FilmDTO.class);
+	}
 
 	@GetMapping(path = "/{id}")
-	public Category getOne(@PathVariable int id) throws NotFoundException {
-		var category = srv.getOne(id);
-		if(category.isEmpty())
+	public FilmDTO getOne(@PathVariable int id) throws NotFoundException {
+		var peli = srv.getOne(id);
+		if(peli.isEmpty())
 			throw new NotFoundException();
 		else
-			return category.get();
+			return FilmDTO.from(peli.get());
 	}
 	
 //	@GetMapping(path = "/{id}/peliculas")
 //	@Transactional
 //	public List<FilmShort> getPelis(@PathVariable int id) throws NotFoundException {
-//		var category = srv.getOne(id);
-//		if(category.isEmpty())
+//		var actor = srv.getOne(id);
+//		if(actor.isEmpty())
 //			throw new NotFoundException();
 //		else {
-//			return (List<FilmShort>) category.get().getFilmActors().stream().map(item -> FilmShort.from(item)).collect(Collectors.toList());
+//			return (List<FilmShort>) actor.get().getFilmActors().stream().map(item -> FilmShort.from(item)).collect(Collectors.toList());
 //		}
 //	}
 	
 	@PostMapping
-	public ResponseEntity<Object> create(@Valid @RequestBody Category item) throws BadRequestException, DuplicateKeyException, InvalidDataException {
+	public ResponseEntity<Object> create(@Valid @RequestBody FilmDTO item) throws BadRequestException, DuplicateKeyException, InvalidDataException {
 		if(item == null)
 			throw new BadRequestException("Faltan los datos");
-		var newItem = srv.add(item);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-			.buildAndExpand(newItem.getCategoryId()).toUri();
+		var newItem = srv.add(FilmDTO.from(item));
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{filmId}")
+			.buildAndExpand(newItem.getFilmId()).toUri();
 		return ResponseEntity.created(location).build();
 
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("/{filmId}")
 	//@ResponseStatus(HttpStatus.NO_CONTENT)
-	public Category update(@PathVariable int id, @Valid @RequestBody Category item) throws BadRequestException, NotFoundException, InvalidDataException {
+	public FilmDTO update(@PathVariable int id, @Valid @RequestBody FilmDTO item) throws BadRequestException, NotFoundException, InvalidDataException {
 		if(item == null)
 			throw new BadRequestException("Faltan los datos");
-		if(id != item.getCategoryId())
+		if(id != item.getFilmId())
 			throw new BadRequestException("No coinciden los identificadores");
-		return srv.modify(item);	
+		return FilmDTO.from(srv.modify(FilmDTO.from(item)));	
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{filmId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable int id) {
 		srv.deleteById(id);

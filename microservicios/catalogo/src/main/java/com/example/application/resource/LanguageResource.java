@@ -32,8 +32,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.domains.contracts.services.ActorService;
 import com.example.domains.contracts.services.CategoryService;
+import com.example.domains.contracts.services.LanguageService;
 import com.example.domains.entities.Category;
 import com.example.domains.entities.FilmActor;
+import com.example.domains.entities.Language;
 import com.example.domains.entities.dtos.ActorDTO;
 import com.example.domains.entities.dtos.FilmShort;
 import com.example.exceptions.BadRequestException;
@@ -44,25 +46,25 @@ import com.example.exceptions.NotFoundException;
 import org.springframework.http.HttpStatus;
 
 @RestController
-@RequestMapping(path = "/categorias")
-public class CategoryResource {
+@RequestMapping(path = "/idiomas")
+public class LanguageResource {
 	@Autowired
-	CategoryService srv;
+	LanguageService srv;
 	
 	@GetMapping
-	public List<Category> getAll() {	
+	public List<Language> getAll() {	
 		return srv.getAll();
 	}
 	
 
 
 	@GetMapping(path = "/{id}")
-	public Category getOne(@PathVariable int id) throws NotFoundException {
-		var category = srv.getOne(id);
-		if(category.isEmpty())
+	public Language getOne(@PathVariable int id) throws NotFoundException {
+		var idioma = srv.getOne(id);
+		if(idioma.isEmpty())
 			throw new NotFoundException();
 		else
-			return category.get();
+			return idioma.get();
 	}
 	
 //	@GetMapping(path = "/{id}/peliculas")
@@ -77,22 +79,22 @@ public class CategoryResource {
 //	}
 	
 	@PostMapping
-	public ResponseEntity<Object> create(@Valid @RequestBody Category item) throws BadRequestException, DuplicateKeyException, InvalidDataException {
+	public ResponseEntity<Object> create(@Valid @RequestBody Language item) throws BadRequestException, DuplicateKeyException, InvalidDataException {
 		if(item == null)
 			throw new BadRequestException("Faltan los datos");
 		var newItem = srv.add(item);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-			.buildAndExpand(newItem.getCategoryId()).toUri();
+			.buildAndExpand(newItem.getLanguageId()).toUri();
 		return ResponseEntity.created(location).build();
 
 	}
 
 	@PutMapping("/{id}")
 	//@ResponseStatus(HttpStatus.NO_CONTENT)
-	public Category update(@PathVariable int id, @Valid @RequestBody Category item) throws BadRequestException, NotFoundException, InvalidDataException {
+	public Language update(@PathVariable int id, @Valid @RequestBody Language item) throws BadRequestException, NotFoundException, InvalidDataException {
 		if(item == null)
 			throw new BadRequestException("Faltan los datos");
-		if(id != item.getCategoryId())
+		if(id != item.getLanguageId())
 			throw new BadRequestException("No coinciden los identificadores");
 		return srv.modify(item);	
 	}
