@@ -1,5 +1,7 @@
 package com.example;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Optional;
@@ -67,7 +69,6 @@ public class DemoApplication implements CommandLineRunner {
 //			System.out.println("No encontrado");
 //		}
 		//dao.findByFirstNameStartingWithOrderByLastNameDesc("P").forEach(System.out::println);
-//		dao.laMia(new Date(Date.parse(LocalDate.now().toString()))).forEach(System.out::println);
 //		dao.findByLastUpdateGreaterThan(LocalDate.now()).forEach(System.out::println);
 
 //		srv.getAll().forEach(System.out::println);
@@ -77,23 +78,24 @@ public class DemoApplication implements CommandLineRunner {
 		
 //		dao.findByActorIdNotNull(ActorShort.class)
 //			.forEach(item-> System.out.println(item.getNombreCompleto()));
-//		dao.findByActorIdNotNull(ActorDTO.class)
+//		dao.findByActorIdIsNotNull(ActorDTO.class)
 //		.forEach(item-> System.out.println(item));
 //		dao.findByActorIdNotNull(Actor.class)
 //		.forEach(item-> System.out.println(item));
 			// .forEach(System.out::println);
 		// srv.modify(new Actor(333));
 //		srv.getAll().forEach(System.out::println);
-		Actor actor= new Actor(0, "", "12345678Z");
-		if(actor.isInvalid())
-			actor.getErrors().forEach(item-> 
-			System.out.println(item.getPropertyPath() + ": " + item.getMessage())
-			);
-		else {
-			System.out.println("Valido");
-		}
-		// dao.save(actor);
-		srv.add(actor);
+//		Actor actor= new Actor(0, "", "12345678Z");
+//		if(actor.isInvalid())
+//			actor.getErrors().forEach(item-> 
+//			System.out.println(item.getPropertyPath() + ": " + item.getMessage())
+//			);
+//		else {
+//			System.out.println("Valido");
+//		}
+//		// dao.save(actor);
+//		srv.add(actor);
+		dao.laMia(DateFormat.getDateInstance().parse(DateFormat.getDateInstance().format(new Date()))).forEach(System.out::println);
 	}
 
 }

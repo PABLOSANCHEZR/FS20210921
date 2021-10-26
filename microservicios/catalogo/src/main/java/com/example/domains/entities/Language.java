@@ -2,13 +2,21 @@ package com.example.domains.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 
 import com.example.domains.core.EntityBase;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -20,17 +28,27 @@ import java.util.List;
 @NamedQuery(name="Language.findAll", query="SELECT l FROM Language l")
 public class Language extends EntityBase<Language> implements Serializable {
 	private static final long serialVersionUID = 1L;
+    public static class Partial {}
+    public static class Complete extends Partial {}
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="language_id")
+	@JsonProperty("id")
+	@JsonView(Language.Partial.class)
 	private int languageId;
 
-	@Column(name="last_update")
-	@JsonFormat(pattern = "yyyy-MM-dd")
-	private Timestamp lastUpdate;
-
+	@NotBlank
+	@Size(max=20)
+	@JsonProperty("idioma")
+	@JsonView(Language.Partial.class)
 	private String name;
+
+	@Column(name="last_update")
+	@Generated(value = GenerationTime.ALWAYS)
+	@JsonView(Language.Complete.class)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm:ss")
+	private Timestamp lastUpdate;
 
 	//bi-directional many-to-one association to Film
 	@OneToMany(mappedBy="language")
@@ -43,6 +61,10 @@ public class Language extends EntityBase<Language> implements Serializable {
 	private List<Film> filmsVO;
 
 	public Language() {
+	}
+
+	public Language(int languageId) {
+		this.languageId = languageId;
 	}
 
 	public int getLanguageId() {
@@ -111,6 +133,28 @@ public class Language extends EntityBase<Language> implements Serializable {
 		filmsVO.setLanguageVO(null);
 
 		return filmsVO;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(languageId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Language other = (Language) obj;
+		return languageId == other.languageId;
+	}
+	
+	@Override
+	public String toString() {
+		return "Language [languageId=" + languageId + ", name=" + name + "]";
 	}
 
 }

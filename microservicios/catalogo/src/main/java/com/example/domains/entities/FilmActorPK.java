@@ -20,6 +20,10 @@ public class FilmActorPK implements Serializable {
 
 	public FilmActorPK() {
 	}
+	public FilmActorPK(int filmId, int actorId) {
+		this.actorId = actorId;
+		this.filmId = filmId;
+	}
 	public int getActorId() {
 		return this.actorId;
 	}
@@ -51,7 +55,7 @@ public class FilmActorPK implements Serializable {
 		int hash = 17;
 		hash = hash * prime + this.actorId;
 		hash = hash * prime + this.filmId;
-
+		
 		return hash;
 	}
 }

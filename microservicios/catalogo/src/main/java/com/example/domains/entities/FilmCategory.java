@@ -4,6 +4,9 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
+
 import java.sql.Timestamp;
 
 
@@ -21,6 +24,7 @@ public class FilmCategory implements Serializable {
 	private FilmCategoryPK id;
 
 	@Column(name="last_update")
+	@Generated(value = GenerationTime.ALWAYS)
 	private Timestamp lastUpdate;
 
 	//bi-directional many-to-one association to Category
@@ -28,6 +32,12 @@ public class FilmCategory implements Serializable {
 	@JoinColumn(name="category_id", insertable=false, updatable=false)
 	@NotNull
 	private Category category;
+
+	public FilmCategory(Film film, Category category) {
+		this.film = film;
+		this.category = category;
+		setId(new FilmCategoryPK(film.getFilmId(), category.getCategoryId()));
+	}
 
 	//bi-directional many-to-one association to Film
 	@ManyToOne

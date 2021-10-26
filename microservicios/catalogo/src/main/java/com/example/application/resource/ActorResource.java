@@ -31,9 +31,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.domains.contracts.services.ActorService;
-import com.example.domains.entities.FilmActor;
 import com.example.domains.entities.dtos.ActorDTO;
-import com.example.domains.entities.dtos.FilmShort;
+import com.example.domains.entities.dtos.FilmShortDTO;
 import com.example.exceptions.BadRequestException;
 import com.example.exceptions.DuplicateKeyException;
 import com.example.exceptions.InvalidDataException;
@@ -71,12 +70,14 @@ public class ActorResource {
 	
 	@GetMapping(path = "/{id}/peliculas")
 	@Transactional
-	public List<FilmShort> getPelis(@PathVariable int id) throws NotFoundException {
+	public List<FilmShortDTO> getPelis(@PathVariable int id) throws NotFoundException {
 		var actor = srv.getOne(id);
 		if(actor.isEmpty())
 			throw new NotFoundException();
 		else {
-			return (List<FilmShort>) actor.get().getFilmActors().stream().map(item -> FilmShort.from(item)).collect(Collectors.toList());
+			return (List<FilmShortDTO>) actor.get().getFilmActors().stream()
+					.map(item -> FilmShortDTO.from(item.getFilm()))
+					.collect(Collectors.toList());
 		}
 	}
 	
