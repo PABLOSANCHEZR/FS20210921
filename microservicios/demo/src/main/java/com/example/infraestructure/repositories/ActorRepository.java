@@ -9,11 +9,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import com.example.domains.entities.Actor;
 import com.example.domains.entities.dtos.ActorDTO;
 import com.example.domains.entities.dtos.ActorShort;
-
+@RepositoryRestResource(exported = false)
 public interface ActorRepository extends JpaRepository<Actor, Integer> {
 	List<Actor> findByFirstNameStartingWithOrderByLastNameDesc(String prefijo);
 	List<Actor> findByLastUpdateGreaterThan(LocalDate fecha);
