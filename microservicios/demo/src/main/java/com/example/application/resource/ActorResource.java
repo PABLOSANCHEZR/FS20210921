@@ -45,7 +45,7 @@ import org.springframework.http.HttpStatus;
 
 @RestController
 @RequestMapping(path = "/actores")
-@Api(value = "Mantenimiento de actores", description = "Permite mantener la lista de actores utilizados en el reparto de las peliculas")
+@Api(value = "Manteniento de actores", description = "Permite mantener la lista de actores utilizados en el reaparto de las peliculas")
 public class ActorResource {
 	@Autowired
 	ActorService srv;

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -21,6 +22,7 @@ import com.example.infraestructure.repositories.ContactoRepository;
 import springfox.documentation.oas.annotations.EnableOpenApi;
 
 @EnableOpenApi
+@EnableEurekaClient
 @SpringBootApplication
 public class ContactosApplication implements CommandLineRunner {
 
