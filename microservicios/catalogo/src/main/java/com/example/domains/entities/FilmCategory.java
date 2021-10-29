@@ -33,12 +33,6 @@ public class FilmCategory implements Serializable {
 	@NotNull
 	private Category category;
 
-	public FilmCategory(Film film, Category category) {
-		this.film = film;
-		this.category = category;
-		setId(new FilmCategoryPK(film.getFilmId(), category.getCategoryId()));
-	}
-
 	//bi-directional many-to-one association to Film
 	@ManyToOne
 	@JoinColumn(name="film_id", insertable=false, updatable=false)
@@ -46,6 +40,12 @@ public class FilmCategory implements Serializable {
 	private Film film;
 
 	public FilmCategory() {
+	}
+
+	public FilmCategory(Film film, Category category) {
+		this.film = film;
+		this.category = category;
+		setId(new FilmCategoryPK(film.getFilmId(), category.getCategoryId()));
 	}
 
 	public FilmCategoryPK getId() {

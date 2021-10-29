@@ -14,6 +14,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -75,6 +77,7 @@ public class ContactoResource {
 		return rslt.get();
 	}
 
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public ResponseEntity<Object> add(@Valid @RequestBody Contacto item) throws Exception {
@@ -91,6 +94,7 @@ public class ContactoResource {
 		return ResponseEntity.created(location).build();
 	}
 
+	@Secured({ "ROLE_USER" })
 	@PutMapping(path = "/{id}")
 	public Contacto modify(@PathVariable int id, @Valid @RequestBody Contacto item) throws Exception {
 		if (item.getId() != id)
@@ -100,6 +104,7 @@ public class ContactoResource {
 		return dao.save(item); // ConstraintViolationException
 	}
 
+	@PreAuthorize("authenticated")
 	@DeleteMapping(path = "/{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable int id) throws Exception {

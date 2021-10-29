@@ -141,6 +141,7 @@ public class FilmResource {
 	})
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
+	@Transactional
 	public ResponseEntity<Object> add(@Valid @RequestBody FilmEditDTO item) throws Exception {
 		Film rslt = FilmEditDTO.from(item);
 		if (rslt.isInvalid())

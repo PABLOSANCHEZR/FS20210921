@@ -13,15 +13,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data @AllArgsConstructor @NoArgsConstructor
-@ApiModel(value = "Actor", description ="Datos del actor para su edicion")
+@ApiModel(value = "Actor", description = "Datos del actor para su edición")
 public class ActorDTO {
 	@JsonProperty("id")
 	private int actorId;
 	@JsonProperty("nombre")
 	@NotBlank
 	@Size(max=45)
-	@ApiModelProperty(name = "Nombre", value = "Nombre del actor", required = true)
-	
+	@ApiModelProperty(name = "Nombre", value = "Nombre de pila del actor",required = true)
 	private String firstName;
 	@JsonProperty("apellidos")
 	private String lastName;

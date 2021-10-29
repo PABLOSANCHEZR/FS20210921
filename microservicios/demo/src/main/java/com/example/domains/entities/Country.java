@@ -2,6 +2,14 @@ package com.example.domains.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -21,13 +29,18 @@ public class Country implements Serializable {
 	@Column(name="country_id")
 	private int countryId;
 
+	@Size(max=50)
 	private String country;
 
 	@Column(name="last_update")
+	@JsonIgnore
+	@Generated(GenerationTime.ALWAYS)
 	private Timestamp lastUpdate;
 
 	//bi-directional many-to-one association to City
 	@OneToMany(mappedBy="country")
+//	@JsonBackReference
+	@JsonIgnore
 	private List<City> cities;
 
 	public Country() {

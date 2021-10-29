@@ -44,9 +44,9 @@ public class FilmEditDTO {
 	private List<Integer> categories = new ArrayList<Integer>();
 
 	public Film update(Film target) {
-		target.setFilmId(filmId);
+		//target.setFilmId(filmId);
 		target.setDescription(description);
-		target.setLength(length);
+		if(target.getLength() != length) target.setLength(length);
 		target.setRating(rating);
 		target.setReleaseYear(releaseYear);
 		target.setRentalDuration(rentalDuration);

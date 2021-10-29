@@ -88,3 +88,29 @@ Content-Type: application/json
 
 delete  http://localhost:8001/actores/206
 
+###
+
+get http://localhost:8001/auto/
+
+###
+
+get http://localhost:8001/auto/paises
+
+###
+
+put http://localhost:8001/auto/countries/119
+Content-Type: application/json
+
+{ "countryId": 119, "country": "Cataluñaaa" }
+
+###
+
+DELETE http://localhost:8001/auto/paises/112
+
+###
+
+GET http://localhost:8001/auto/profile/paises
+
+###
+
+POST http://localhost:8089/v2/pet
