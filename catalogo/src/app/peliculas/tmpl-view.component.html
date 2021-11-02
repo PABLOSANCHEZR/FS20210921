@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-md-6">
+    <div class="well well-sm">
+      <div class="row">
+        <div class="col-sm-6 col-md-12">
+          <h4>
+            Datos de la pelicula
+          </h4>
+
+          <p><b>Titulo:</b> {{ VM.Elemento.title}}
+            <br />
+            <b>Descripcion:</b>
+            {{ VM.Elemento.description }}
+            <br />
+            <b>Año:</b> {{VM.Elemento.releaseYear}}
+            <br />
+            <b>Duracion:</b> {{VM.Elemento.length}}
+            <br />
+            <b>Duracion de alquiler:</b> {{VM.Elemento.rentalDuration}}
+            <br />
+            <b>Rate:</b> {{VM.Elemento.rentalRate}}
+            <br />
+            <b>Coste:</b> {{VM.Elemento.replacementCost}}
+          </p>
+          <h6>Actores: </h6>
+          <p *ngFor="let item of VM.Elemento.actores">
+            <a [routerLink]="['../../../actores/'+item.id,'view']"> {{item.apellidos}}, {{item.nombre}} </a>
+             <br />
+
+           </p>
+           <h6>Categorias: </h6>
+           <p *ngFor="let item of VM.Elemento.categorias">
+             {{item}}
+              <br />
+            </p>
+            <h6>Idiomas: </h6>
+            <p *ngFor="let item of VM.Elemento.idiomas">
+              {{item}}
+               <br />
+
+             </p>
+          <div class="btn-group">
+
+            <button class="btn btn-success" routerLink="../edit">
+              <i class="fas fa-pen">Editar</i>
+            </button>
+            <button
+              class="btn btn-secondary"
+              (click)="VM.cancel()"
+            >Volver</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

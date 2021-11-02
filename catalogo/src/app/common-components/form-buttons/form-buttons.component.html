@@ -1,0 +1,5 @@
+<div class="btn-group" role="group">
+  <button class="btn btn-success" *ngIf="hasSend" (click)="send.emit(null)" [disabled]="sendDisabled"> enviar</button>
+  <button class="btn btn-danger" *ngIf="hasDelete" (click)="delete.emit(null)"> borrar</button>
+  <button class="btn btn-info" *ngIf="hasCancel" (click)="cancel.emit(null)"> volver</button>
+</div>

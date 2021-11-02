@@ -1,0 +1,47 @@
+<header class="album py-5 bg-light">
+  <div class="row flex-nowrap justify-content-start align-items-center">
+    <div class="col-4 pt-1">
+      <a class="btn btn-sm btn-outline-secondary" routerLink="add">Añadir nuevo actor</a>
+    </div>
+    <div class="col-4 text-center justify-content-between">
+      <h1>Lista de actores</h1>
+    </div>
+    <div class="col-4 d-flex justify-content-end align-items-center">
+      <div class="md-form">
+        <input type="search" [(ngModel)]="searchText" placeholder="Search text">
+      </div>
+      <!-- <ul *ngFor="let item of VM.Listado | filter: searchText">
+        <li></li>
+      </ul> -->
+
+    </div>
+  </div>
+</header>
+<article>
+  <div class="container">
+    <div class="col-md-6" *ngFor="let item of VM.Listado">
+        <div class="card flex-md-row box-shadow h-md-250">
+          <div class="card-body d-flex flex-column align-items-start">
+            <p class="card-text">{{item.nombreCompleto}}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary" [routerLink]="[item.actorId,'view']" >View</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary"[routerLink]="[item.actorId,'edit']" >Edit</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</article>
+<p-paginator [first]="VM.rowsPerPage*VM.page" [rows]="VM.rowsPerPage" [totalRecords]="VM.totalRows"
+    [pageLinkSize]="5" (onPageChange)="VM.load($event.page)"></p-paginator>
+<footer class="text-muted py-5">
+  <div class="container">
+    <p class="float-end mb-1">
+      <a href="/actores">Back to top</a>
+    </p>
+  </div>
+</footer>
+

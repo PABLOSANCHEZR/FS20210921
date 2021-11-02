@@ -1,6 +1,17 @@
 # Catalogo
-
+Proyecto Final del curso FS
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.8.
+
+## Contenido/Requisitos
+### FrontEnd
+- Aplicación Angular: Catalogo Sakila
+  - Usuario: Consultar el catalogo
+  - Personal (Autenticados): Mantener el catalogo
+- Con bateria de pruebas
+- Con enrutamientos
+- Validaciones
+- Con estilo: SASS, BEM, ...
+- Accesible
 
 ## Development server
 

@@ -1,0 +1,40 @@
+<h1>Nuevo actor</h1>
+<form #miForm="ngForm">
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      <label class="form-label" for="id">Código:</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="id.invalid && miForm.dirty"
+        type="number"
+        categoria="id"
+        id="id"
+        [(ngModel)]="VM.Elemento.id"
+        #id="ngModel"
+        required
+        min="0"
+      />
+      <output class="error" [showErrors]="id.errors"></output>
+    </div>
+
+    <div class="form-group col-md-4">
+      <label class="form-label" for="categoria">Categoria:</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="categoria.invalid"
+        type="text"
+        categoria="categoria"
+        id="categoria"
+        [(ngModel)]="VM.Elemento.categoria"
+        #categoria="ngModel"
+        required
+        minlength="2"
+        maxlength="50"
+      />
+      <output class="error" [showErrors]="categoria.errors"></output>
+    </div>
+  </div>
+  <div class="form-group">
+    <app-form-buttons (send)="VM.send()" (delete)="VM.delete(VM.Elemento.id)" [send-disabled]="miForm.invalid" (cancel)="VM.cancel()"></app-form-buttons>
+  </div>
+</form>

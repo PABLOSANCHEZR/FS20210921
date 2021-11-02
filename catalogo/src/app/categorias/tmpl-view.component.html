@@ -1,0 +1,34 @@
+<h1>Categoria</h1>
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-md-6">
+    <div class="well well-sm">
+      <div class="row">
+        <div class="col-sm-6 col-md-8">
+          <p>
+            {{ VM.Elemento.name }}
+
+
+          </p>
+          <h4>Peliculas de esa categoria: </h4>
+          <p *ngFor="let item of VM.Elemento.peliculas">
+            {{item.title}}
+            <br />
+
+          </p>
+
+
+          <div class="btn-group">
+
+            <button class="btn btn-success" routerLink="../edit">
+              <i class="fas fa-pen">Editar</i>
+            </button>
+            <button
+              class="btn btn-secondary"
+              (click)="VM.cancel()"
+            >Volver</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

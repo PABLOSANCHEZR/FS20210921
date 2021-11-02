@@ -1,0 +1,6 @@
+<ng-container [ngSwitch]="VM.Modo" >
+  <app-peliculas-add *ngSwitchCase="'add'"></app-peliculas-add>
+  <app-peliculas-edit *ngSwitchCase="'edit'"></app-peliculas-edit>
+  <app-peliculas-view *ngSwitchCase="'view'"></app-peliculas-view>
+  <app-peliculas-list *ngSwitchDefault></app-peliculas-list>
+ </ng-container>
